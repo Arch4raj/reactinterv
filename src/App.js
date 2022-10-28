@@ -1,7 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
-import {useNavigate,Route,Routes, useParams} from 'react-router-dom';
+import {useNavigate,Route,Routes} from 'react-router-dom';
+import  AnimeInfo  from './AnimeInfo';
+import Anime from './Anime';
 
 // import { useEffect, useState } from 'react';
 
@@ -55,74 +57,26 @@ import {useNavigate,Route,Routes, useParams} from 'react-router-dom';
 
 
 function App(){
-
-  const[animedata,setAnimeData]=useState([]);
-  const [search,setSearch]=useState('');
-  const getData=async()=>{
-    const res=await fetch(`https://api.jikan.moe/v4/anime?q=${search}&limit=20`)
-    const resdata=await res.json();
-    setAnimeData(resdata.data)
-    console.log(resdata);
-    }
-  useEffect(()=>{getData()},[search]);
-
+ 
   
-  
+const navigate=useNavigate()
+
   
   return(
     <div>
-    <div className="header">
-       <h1>MyAnime</h1>
-       <div className="search">
-       <input type="search" placeholder='Search for anime' onChange={(e)=>setSearch(e.target.value)}></input>
-       </div>
-       
-    </div>
-
-<div className="content">
-{animedata.map((an,index)=>(<Anime  anime={an} id={an.mal_id}/>))}
-</div>
+    
+      <button className='button' onClick={()=>navigate('/anime')}>Home</button>
+    
 <Routes>
 <Route path="/anime/:id" element={<AnimeInfo />} />
+<Route path="/anime" element={<Anime />} />
+
 </Routes>
-   
+{/* <Anime/> */}
     </div>
   )
 
 }
 export default App;
 
-function Anime({anime,id}){
- const navigate = useNavigate();
- const Handler=()=>{
-   navigate(`/anime/${id}`)
-   console.log("Anime works")
- }
-  return(
-    <div>
-      <div className='card' onClick={()=>Handler}>
-      <h2 className='title'>{anime.title}</h2>
-      <img src={anime.images.jpg.image_url}></img>
-      <h2 className='rating'>{anime.rating}</h2>
-      </div>
-      
-    </div>
-  )
-}
-function AnimeInfo(){
-const {id} =useParams();
-const [animedetail,setAnimedetail]=useState([])
-const getAnime=async()=>{
-  const res=await fetch(`https://api.jikan.moe/v4/anime/${id}`)
-  const resdata=await res.json();
-  setAnimedetail(resdata);
 
-}
-useEffect(()=>{getAnime()},[]);
-
-  return(
-    <div>
-      <h1>{animedetail.title}</h1>
-    </div>
-  )
-}

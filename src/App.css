@@ -1,29 +1,4 @@
-/* .heading{
-  text-align: center;
-  text-transform: uppercase;
-  color:crimson;
 
-}
-.title{
-  font-size: 15px;
-  font-weight: bold;
-}
-.products{
-  display :flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap:4rem;
-  padding:30px;
-}
-.image{
-  height: 200px;
-  width:200px;
-  object-fit: cover;
-}
-.container{
-  width:250px;
-  
-} */
 
 @import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation&family=Kaushan+Script&family=Oleo+Script+Swash+Caps:wght@700&family=Pacifico&family=Poppins:ital,wght@0,300;1,200&family=Quintessential&family=Roboto+Slab:wght@300&family=Roboto:wght@100&display=swap');
 *{
